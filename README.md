@@ -3,9 +3,13 @@
 Para rodar esse projeto é necessário a configuração de algumas variáveis de ambiente:
 
 **SECRET_KEY**
+
 **DOMAIN_URL**
+
 **DB_URL**
+
 **JAEGER_URL_GRPC**
+
 **JAEGER_URL_HTTP**
 
 Para facilitar use o arquivo .env.example como .env copiando as variáveis de ambiente.
