@@ -31,7 +31,6 @@ export class UserInMemoryRepository implements UserRepositoryProtocol {
 
   async findOne(id: number) {
     const response = this.data.find((item) => item['id'] === id);
-    console.log(response);
     const user = new User();
     user.setUser(response);
     return user;
