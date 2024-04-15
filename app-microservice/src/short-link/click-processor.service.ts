@@ -5,10 +5,10 @@ import { ShortLinkService } from './short-link.service';
 
 @Injectable()
 @Processor('clicks')
-export class ClickProcessor {
+export class ClickProcessorService {
   constructor(private readonly shortLinkService: ShortLinkService) {}
 
-  private readonly logger = new Logger(ClickProcessor.name);
+  private readonly logger = new Logger(ClickProcessorService.name);
 
   @Process('click')
   async execute(job: Job<{ id: number }>) {

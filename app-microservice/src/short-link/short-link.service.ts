@@ -3,15 +3,14 @@ import { ShortLink } from './entities/short-link.entity';
 import { ShortLinkRepositoryProtocol } from './db/typeorm/protocol/short-link-repository.protocol';
 import { CreateShortLinkDto } from './dto/create-short-link.dto';
 import { UpdateShortLinkDto } from './dto/update-short-link.dto';
-import { Queue } from 'bull';
-import { InjectQueue } from '@nestjs/bull';
+import { ClickProducerService } from './click-producer.service';
 
 @Injectable()
 export class ShortLinkService {
   constructor(
     @Inject('ShortLinkRepositoryProtocol')
     private readonly shortLinkRepository: ShortLinkRepositoryProtocol,
-    @InjectQueue('clicks') private readonly clicksQueue: Queue,
+    private readonly clickProducerService: ClickProducerService,
   ) {}
   async create(createShortLinkLinkDto: CreateShortLinkDto): Promise<ShortLink> {
     const shortLink = new ShortLink();
@@ -27,21 +26,7 @@ export class ShortLinkService {
     const shortLink = new ShortLink();
     const url = shortLink.setDomainInShortenedLink(code);
     const response = await this.shortLinkRepository.findOneByShortenedLink(url);
-    await this.clicksQueue.add(
-      'click',
-      {
-        id: response.id,
-      },
-      {
-        removeOnComplete: {
-          age: 60 * 10, // keep up to 10 minutes
-          count: 10, // keep up to 1000 jobs
-        },
-        removeOnFail: {
-          age: 24 * 3600, // keep up to 24 hours
-        },
-      },
-    );
+    await this.clickProducerService.sendClick(response.id);
     return response;
   }
 

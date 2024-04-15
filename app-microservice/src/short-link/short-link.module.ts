@@ -6,7 +6,8 @@ import { ShortLinkModel } from './db/typeorm/models/short-link.model';
 import { ShortLinkController } from './short-link.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { BullModule } from '@nestjs/bull';
-import { ClickProcessor } from './click-processor';
+import { ClickProcessorService } from './click-processor.service';
+import { ClickProducerService } from './click-producer.service';
 
 @Module({
   imports: [
@@ -32,7 +33,8 @@ import { ClickProcessor } from './click-processor';
       provide: 'ShortLinkRepositoryProtocol',
       useClass: ShortLinkRepository,
     },
-    ClickProcessor,
+    ClickProcessorService,
+    ClickProducerService,
   ],
   exports: [ShortLinkService],
 })
