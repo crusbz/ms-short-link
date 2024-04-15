@@ -64,7 +64,6 @@ describe('AuthService', () => {
       });
 
       const result = await service.validateUser(user.email, user.password);
-      console.log('result', result);
       expect(result).toEqual(responseUser);
     });
 
@@ -100,7 +99,6 @@ describe('AuthService', () => {
           '$2b$10$UNXU2bFegrAJQ0CpRI053u9SDTfRWL/FHSon5tOUY025WpVOIDxTO',
       };
       const result = await service.login(user);
-      console.log(result);
       expect(result).toEqual({
         userId: 1,
         accessToken: 'fakeToken',
