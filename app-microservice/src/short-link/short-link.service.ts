@@ -13,8 +13,18 @@ export class ShortLinkService {
     private readonly clickProducerService: ClickProducerService,
   ) {}
   async create(createShortLinkLinkDto: CreateShortLinkDto): Promise<ShortLink> {
-    const shortLink = new ShortLink();
-    shortLink.createShortLink(createShortLinkLinkDto);
+    let shortLink: ShortLink;
+    let hasShortLink: ShortLink | undefined;
+
+    do {
+      shortLink = new ShortLink();
+      shortLink.createShortLink(createShortLinkLinkDto);
+
+      hasShortLink = await this.shortLinkRepository.findOneByShortenedLink(
+        shortLink.shortenedLink,
+      );
+    } while (hasShortLink);
+
     return await this.shortLinkRepository.create(shortLink);
   }
 
