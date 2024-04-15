@@ -80,7 +80,7 @@ export class ShortLink {
 
   createShortLink(input: Partial<ShortLink>): void {
     this.targetLink = input.targetLink;
-    this.shortenedLink = this.generateShortenedLink();
+    this.generateShortenedLink();
     this.userId = input.userId;
     this.createdAt = new Date();
   }
@@ -105,7 +105,7 @@ export class ShortLink {
     return `${process.env.DOMAIN_URL || 'http://localhost:3000'}/${code}`;
   }
 
-  private generateShortenedLink(): string {
+  generateShortenedLink(): void {
     const charactres =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
@@ -114,7 +114,7 @@ export class ShortLink {
         Math.floor(Math.random() * charactres.length),
       );
     }
-    return this.setDomainInShortenedLink(result);
+    this.shortenedLink = this.setDomainInShortenedLink(result);
   }
 
   addCount(): void {
