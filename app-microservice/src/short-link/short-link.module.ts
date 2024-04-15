@@ -16,7 +16,7 @@ import { ClickProcessor } from './click-processor';
         name: 'AUTH_CLIENT',
         transport: Transport.TCP,
         options: {
-          host: 'localhost',
+          host: 'auth',
           port: 4000,
         },
       },
