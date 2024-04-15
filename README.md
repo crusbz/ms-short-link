@@ -31,7 +31,7 @@ Isso iniciará alguns containers, incluindo:
 - `jaeger`
 
 A aplicação estará rodando em `http://localhost:3000`
-O link para acessar a documentação `http://localhost:3000/api`.
+Os links para acessar as documentações `http://localhost:3000/docs` `http://localhost:3001/docs`
 Para acessar as métricas do Jaeger `http://localhost:16686`
 
 O projeto utiliza o Nest.js com microservices transportados via TCP. Foi implementado encapsulamento nos domínios utilizando entidades para evitar que se tornassem anêmicas. Além disso, para contar os cliques, foi adicionada uma fila. O próprio Nest.js sugere o uso do BullMQ com Redis, facilitando a contagem para evitar perdas e gargalos. Essa contagem é feita de forma assíncrona.
