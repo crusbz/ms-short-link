@@ -1,0 +1,5 @@
+node_modules
+app-microservice/dist
+app-microservice/node_modules
+user-microservice/dist
+user-microservice/node_modules
