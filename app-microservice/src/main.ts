@@ -1,3 +1,4 @@
+import { otelSDK } from './tracer';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
@@ -7,12 +8,12 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UnprocessableEntityExceptionFilter } from './filters/unprocessable-entity-exception.filter';
 
 async function bootstrap() {
+  await otelSDK.start();
   const app = await NestFactory.create(AppModule);
-
   app.connectMicroservice({
     transport: Transport.TCP,
     options: {
-      host: 'localhost',
+      host: 'app',
       port: 4010,
     },
   });
