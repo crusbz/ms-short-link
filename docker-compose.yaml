@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  app-microservice:
+    build: ./app-microservice
+    container_name: app
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app-microservice/:/www/app/app-microservice
+    networks:
+      - microservices
+    environment:
+      - DOMAIN_URL=${DOMAIN_URL}
+      - DB_URL=${DB_URL}
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${JAEGER_URL_HTTP}
+      - JAEGER_URL_GRPC=${JAEGER_URL_GRPC}
+  auth-microservice:
+    build: ./auth-microservice
+    container_name: auth
+    ports:
+      - 3001:3001
+    volumes:
+      - ./auth-microservice/:/www/app/auth-microservice
+    networks:
+      - microservices
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+    networks:
+      - microservices
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - 16686:16686
+      - 4317:4317
+      - 4318:4318
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    driver: bridge
