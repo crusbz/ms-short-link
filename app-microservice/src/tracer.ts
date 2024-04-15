@@ -12,8 +12,6 @@ const exporterOptions = {
   url: process.env.JAEGER_URL_GRPC,
 };
 
-console.log('bate aqui porra', exporterOptions);
-
 const traceExporter = new OTLPTraceExporter(exporterOptions);
 
 export const otelSDK = new NodeSDK({
