@@ -50,7 +50,7 @@ describe('ShortLinkService', () => {
     expect(shortLinks.length).toBe(1);
     expect(shortLinks[0].targetLink).toEqual('https://www.google.com.br');
     expect(shortLinks[0].shortenedLink).toBeDefined();
-    expect(shortLinks[0].shortenedLink).toEqual('localhost:3000/1W2b34');
+    expect(shortLinks[0].shortenedLink).toEqual('http://localhost:3000/1W2b34');
     expect(shortLinks[0].id).toEqual(1);
     expect(shortLinks[0].userId).toEqual(1);
     expect(shortLinks[0].count).toEqual(0);
@@ -59,11 +59,11 @@ describe('ShortLinkService', () => {
     expect(shortLinks[0].deletedAt).toBeNull();
   });
 
-  it('should fine onde by short link', async () => {
+  it('should find one by short link', async () => {
     const shortLink = await service.findByShortenedLink('1W2b34');
     expect(shortLink.targetLink).toEqual('https://www.google.com.br');
     expect(shortLink.shortenedLink).toBeDefined();
-    expect(shortLink.shortenedLink).toEqual('localhost:3000/1W2b34');
+    expect(shortLink.shortenedLink).toEqual('http://localhost:3000/1W2b34');
     expect(shortLink.id).toEqual(1);
     expect(shortLink.userId).toEqual(1);
     expect(shortLink.count).toEqual(0);

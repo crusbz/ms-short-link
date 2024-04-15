@@ -27,7 +27,6 @@ export class ShortLinkService {
     const shortLink = new ShortLink();
     const url = shortLink.setDomainInShortenedLink(code);
     const response = await this.shortLinkRepository.findOneByShortenedLink(url);
-    console.log(response);
     await this.clicksQueue.add(
       'click',
       {

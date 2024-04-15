@@ -65,7 +65,7 @@ describe('ShortLinkController', () => {
     );
     expect(shortLinks.shortenedLinks[0].shortenedLink).toBeDefined();
     expect(shortLinks.shortenedLinks[0].shortenedLink).toEqual(
-      'localhost:3000/1W2b34',
+      'http://localhost:3000/1W2b34',
     );
     expect(shortLinks.shortenedLinks[0].id).toEqual(1);
     expect(shortLinks.shortenedLinks[0].userId).toEqual(1);
