@@ -2,6 +2,8 @@ import { Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { MessagePattern } from '@nestjs/microservices';
+import { OutputLogin } from './dto/output-login';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 type RequestUser = {
   id: number;
@@ -12,10 +14,17 @@ type RequestUser = {
   updatedAt: Date | null;
   deletedAt: Date | null;
 };
+
+@ApiTags('Auth')
 @Controller()
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @ApiResponse({
+    status: 200,
+    description: 'Returns an access token',
+    type: OutputLogin,
+  })
   @UseGuards(LocalAuthGuard)
   @Post('auth')
   async login(@Req() req: { user: RequestUser }) {
