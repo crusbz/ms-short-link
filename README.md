@@ -1,5 +1,20 @@
 # Microservice Short Link And Auth
 
+<div style="display: inline_block"><br>
+  <img align="center" alt="joao-ts" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg">
+  <img align="center" alt="joao-nest" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg">
+  <img align="center" alt="joao-redis" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg">
+  <img align="center" alt="joao-otel" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opentelemetry/opentelemetry-original.svg">
+  <img align="center" alt="joao-jaeger" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jaegertracing/jaegertracing-original.svg">
+  <img align="center" alt="joao-postgres" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg">
+  <img align="center" alt="joao-docker" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg">
+  <img align="center" alt="joao-jest" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jest/jest-plain.svg">
+    <img align="center" alt="joao-jest" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swagger/swagger-original.svg">
+  <img align="center" alt="joao-bullmq" height="30" width="40" src="https://docs.bullmq.io/~gitbook/image?url=https:%2F%2F1340146492-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F-LUuDmt_xXMfG66Rn1GA%252Ficon%252FHOq80FSJicAlE4bVptC9%252Fbull.png%3Falt=media%26token=10a2ba71-db1f-4d5c-8787-3dbedc8dd3ce&width=32&dpr=1&quality=100&sign=daffcb95d56c1300394e8d49d292dc9dcaf460947676095117dcb5d5d957239b">
+</div>
+
+## Como Usar?
+
 Para executar a aplicação, é necessário ter o Docker instalado e configurar algumas variáveis de ambiente. Para facilitar esse processo, deixei o arquivo `.env.example`, que, ao ser renomeado, está pronto para uso. No entanto, é importante ressaltar que, em ambientes de produção, essa prática não é recomendada.
 
 Após realizar essa configuração inicial, basta executar o seguinte comando:
