@@ -2,6 +2,7 @@ import {
   CanActivate,
   ExecutionContext,
   HttpException,
+  UnauthorizedException,
   Inject,
   Injectable,
 } from '@nestjs/common';
@@ -15,7 +16,8 @@ export class AuthGuard implements CanActivate {
     private readonly client: ClientProxy,
   ) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const req = context.switchToHttp().getRequest();
+    try{
+      const req = context.switchToHttp().getRequest();
 
     if (!req.headers['authorization']) {
       throw new HttpException('Unauthorized', 401);
@@ -33,5 +35,8 @@ export class AuthGuard implements CanActivate {
     req.userId = res.user.id;
 
     return res;
+    } catch(e){
+      throw new UnauthorizedException('Access Denied');
+    }
   }
 }
