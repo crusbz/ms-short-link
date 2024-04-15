@@ -14,7 +14,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         name: 'USER_CLIENT',
         transport: Transport.TCP,
         options: {
-          host: 'localhost',
+          host: 'app',
           port: 4010,
         },
       },
