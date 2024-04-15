@@ -102,7 +102,7 @@ export class ShortLink {
   }
 
   setDomainInShortenedLink(code: string) {
-    return `${process.env.DOMAIN_URL || 'localhost:3000'}/${code}`;
+    return `${process.env.DOMAIN_URL || 'http://localhost:3000'}/${code}`;
   }
 
   private generateShortenedLink(): string {
