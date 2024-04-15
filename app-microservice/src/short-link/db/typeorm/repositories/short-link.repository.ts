@@ -78,7 +78,7 @@ export class ShortLinkRepository implements ShortLinkRepositoryProtocol {
   }
 
   async updateCount(id: number, count: number): Promise<ShortLink> {
-    await this.repository.update(id, { count });
+    await this.repository.update(id, { count, updatedAt: new Date() });
     const instanceShortLink = new ShortLink();
     instanceShortLink.setShortLink(await this.repository.findOneBy({ id }));
     return instanceShortLink;
