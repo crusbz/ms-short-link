@@ -1,5 +1,5 @@
-import { DataSource, DataSourceOptions } from 'typeorm';
 import 'dotenv/config';
+import { DataSource, DataSourceOptions } from 'typeorm';
 import { UserModel } from 'src/user/db/typeorm/models/user.model';
 import { ShortLinkModel } from 'src/short-link/db/typeorm/models/short-link.model';
 
