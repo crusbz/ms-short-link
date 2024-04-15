@@ -3,7 +3,6 @@ import { JwtService } from '@nestjs/jwt';
 import { ClientProxy } from '@nestjs/microservices';
 import { compareSync } from 'bcrypt';
 import { lastValueFrom, timeout } from 'rxjs';
-import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
 export class AuthService {
@@ -40,10 +39,10 @@ export class AuthService {
   }
 
   validateToken(jwt: string) {
-    try{
+    try {
       return this.jwtService.verify(jwt);
-    }catch(e){
-      return null
+    } catch (e) {
+      return null;
     }
   }
 }
