@@ -14,16 +14,12 @@ export class ShortLinkService {
   ) {}
   async create(createShortLinkLinkDto: CreateShortLinkDto): Promise<ShortLink> {
     let shortLink: ShortLink;
-    let hasShortLink: ShortLink | undefined;
+    shortLink = new ShortLink();
+    shortLink.createShortLink(createShortLinkLinkDto);
 
-    do {
-      shortLink = new ShortLink();
-      shortLink.createShortLink(createShortLinkLinkDto);
-
-      hasShortLink = await this.shortLinkRepository.findOneByShortenedLink(
-        shortLink.shortenedLink,
-      );
-    } while (hasShortLink);
+    while (await this.hasShortened(shortLink.shortenedLink)) {
+      shortLink.generateShortenedLink();
+    }
 
     return await this.shortLinkRepository.create(shortLink);
   }
@@ -61,5 +57,14 @@ export class ShortLinkService {
 
   async remove(id: number, userId: number): Promise<void> {
     return await this.shortLinkRepository.remove(id, userId);
+  }
+
+  async hasShortened(shortenedLink: string): Promise<boolean> {
+    try {
+      await this.shortLinkRepository.findOneByShortenedLink(shortenedLink);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }
