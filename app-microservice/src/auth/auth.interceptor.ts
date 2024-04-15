@@ -34,7 +34,7 @@ export class AuthInterceptor implements NestInterceptor {
         .pipe(timeout(5000)),
     );
 
-    req.body.userId = response.user.id;
+    req.body.userId = response?.user?.id;
 
     const now = Date.now();
     return next.handle().pipe(
