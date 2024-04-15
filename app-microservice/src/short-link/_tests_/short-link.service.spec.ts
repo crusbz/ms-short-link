@@ -1,9 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ShortLinkInMemoryRepository } from '../db/in-memory/short-link-in-memory.repository';
 import { ShortLinkService } from '../short-link.service';
+import { ClickProducerService } from '../click-producer.service';
 
 const queueMock = {
   add: jest.fn().mockResolvedValue({}), // Mockando o método add para retornar uma promessa resolvida
+};
+
+const clickProducer = {
+  sendClick: jest.fn().mockResolvedValue({}), // Mockando o método add para retornar uma promessa resolvida
 };
 describe('ShortLinkService', () => {
   let service: ShortLinkService;
@@ -16,6 +21,7 @@ describe('ShortLinkService', () => {
           provide: 'ShortLinkRepositoryProtocol',
           useValue: new ShortLinkInMemoryRepository(),
         },
+        { provide: ClickProducerService, useValue: clickProducer },
         {
           provide: 'BullQueue_clicks', // Nome da instância do Bull Queue
           useValue: queueMock, // Passando o mock do Bull Queue como um provedor

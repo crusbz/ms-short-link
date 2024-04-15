@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ShortLinkController } from '../short-link.controller';
 import { ShortLinkService } from '../short-link.service';
 import { ShortLinkInMemoryRepository } from '../db/in-memory/short-link-in-memory.repository';
+import { ClickProducerService } from '../click-producer.service';
 
 const queueMock = {
   add: jest.fn().mockResolvedValue({}), // Mockando o método add para retornar uma promessa resolvida
@@ -9,6 +10,10 @@ const queueMock = {
 
 const clientModuleAuth = {
   get: jest.fn().mockResolvedValue({}),
+};
+
+const clickProducer = {
+  sendClick: jest.fn().mockResolvedValue({}), // Mockando o método add para retornar uma promessa resolvida
 };
 
 describe('ShortLinkController', () => {
@@ -27,6 +32,7 @@ describe('ShortLinkController', () => {
           provide: 'BullQueue_clicks', // Nome da instância do Bull Queue
           useValue: queueMock, // Passando o mock do Bull Queue como um provedor
         },
+        { provide: ClickProducerService, useValue: clickProducer },
         {
           provide: 'AUTH_CLIENT',
           useValue: clientModuleAuth,

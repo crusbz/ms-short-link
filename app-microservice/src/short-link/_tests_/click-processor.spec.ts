@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ClickProcessor } from '../click-processor';
 import { ShortLinkService } from '../short-link.service';
+import { ClickProcessorService } from '../click-processor.service';
 
 describe('ClickProcessor', () => {
-  let processor: ClickProcessor;
+  let processor: ClickProcessorService;
   let shortLinkService: ShortLinkService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        ClickProcessor,
+        ClickProcessorService,
         {
           provide: ShortLinkService,
           useValue: {
@@ -19,7 +19,7 @@ describe('ClickProcessor', () => {
       ],
     }).compile();
 
-    processor = module.get<ClickProcessor>(ClickProcessor);
+    processor = module.get<ClickProcessorService>(ClickProcessorService);
     shortLinkService = module.get<ShortLinkService>(ShortLinkService);
   });
 
