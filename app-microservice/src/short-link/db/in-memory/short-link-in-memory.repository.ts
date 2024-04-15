@@ -12,7 +12,7 @@ export class ShortLinkInMemoryRepository
     this.shortLink.setShortLink({
       id: 1,
       targetLink: 'https://www.google.com.br',
-      shortenedLink: 'localhost:3000/1W2b34',
+      shortenedLink: 'http://localhost:3000/1W2b34',
       userId: 1,
       count: 0,
       createdAt: new Date('2024-04-14T15:25:32.530Z'),
@@ -49,7 +49,6 @@ export class ShortLinkInMemoryRepository
   }
 
   async findOneByShortenedLink(shortLink: string): Promise<ShortLink> {
-    console.log(shortLink);
     return this.data.find((item) => item['shortenedLink'] === shortLink);
   }
 
