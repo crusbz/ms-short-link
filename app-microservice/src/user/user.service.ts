@@ -13,13 +13,14 @@ export class UserService {
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
     await user.createUser(createUserDto);
-    const hasExistWithEmail = await this.userRepository.findByMail(user.email);
 
-    if (hasExistWithEmail) {
-      throw new ConflictException('User already exists');
+    try{
+      await this.userRepository.findByMail(user.email);
+    } catch(e) {
+      return await this.userRepository.create(user);
     }
 
-    return await this.userRepository.create(user);
+    throw new ConflictException('User already exists');
   }
 
   async findAll(): Promise<User[]> {
